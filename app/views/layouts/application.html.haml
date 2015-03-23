@@ -5,7 +5,13 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
-    %p.notice= notice
-    %p.alert= alert
+  %body.body
+    %nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+      - if user_signed_in?
+        %ul.nav.navbar-nav.pull-right
+          %li= link_to('Logout', destroy_user_session_path, :method => :delete)
+      - else
+        %ul.nav.navbar-nav
+          %li= link_to "Sign up", new_registration_path(resource_name)
+    = render partial: "devise/shared/flash_messages", flash: flash
     = yield
