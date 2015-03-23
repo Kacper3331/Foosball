@@ -7,6 +7,8 @@
       %h2 Sign up
       = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = f.input :email, label: "Email", placeholder: "Email"
+        = f.input :firstname, label: "Firstname", placeholder: "Firstname"
+        = f.input :lastname, label: "Lastname", placeholder: "Lastname"
         = f.input :password, label: "Password", autocomplete: "off", placeholder: "Password"
         = f.input :password_confirmation, autocomplete: "off", label: "Confirm Password", placeholder: "Confirm Password"
         = f.button :submit, "Sign up"
