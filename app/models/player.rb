@@ -4,10 +4,12 @@ class Player < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
-  validates :firstname, 
+  validates :firstname,
     presence: true
 
-  validates :lastname, 
+  validates :lastname,
+    presence: true
+
+  validates :password,
     presence: true
 end
