@@ -46,6 +46,8 @@ end
 
 group :test do
   gem 'shoulda-matchers', require: false
+  gem "factory_girl_rails"
+  gem 'database_cleaner'
 end
 
 group :development, :test do
