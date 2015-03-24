@@ -4,7 +4,7 @@
 %body.body
   %div.container
     %div.form
-      %h2 Log in
+      %h2 Sign in
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         = f.input :email, label: "Email", placeholder: "Email"
         = f.input :password, autocomplete: "off", label: "Password", placeholder: "Password"
