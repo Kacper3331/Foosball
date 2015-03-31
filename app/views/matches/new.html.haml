@@ -1,0 +1,14 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+  %ul.nav.navbar-nav
+    %li= link_to "Back", root_path
+%body.body-form
+  %div.container
+    %div.form
+      %h2 Create Match
+      = simple_form_for @match do |f|
+        = f.association :players, label: "First Player", label_method: -> (player) {"#{player.firstname} #{player.lastname}"}, input_html: { class: 'chosen-select', data: { placeholder: "Select First Player" } }, value_method: :id
+        = f.input :first_player_score, placeholder: "First Player Score", label: 'First Player Score', input_html: { min: '0', step: '1', max: '10' }
+        = f.association :players, label_method: -> (player) {"#{player.firstname} #{player.lastname}"}, label: "Second Player", value_method: :id, input_html: { class: 'chosen-select', data: { placeholder: "Select Second Player" } }
+        = f.input :second_player_score, placeholder: "Second Player Score", label: "Second Player Score", input_html: { min: '0', step: '1', max: '10' }
+        = f.input :date, label: "Date", as: :date_picker
+        = f.button :submit, 'Create'
