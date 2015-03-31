@@ -37,6 +37,8 @@ gem 'launchy'
 
 gem 'chosen-rails'
 
+gem 'jquery-turbolinks'
+
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 
 gem 'datetimepicker-rails',
