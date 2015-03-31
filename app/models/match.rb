@@ -15,4 +15,8 @@ class Match < ActiveRecord::Base
   validates :players,
     presence: true
 
+  def self.players_ids(player_ids, match)
+    match.first_player_id = player_ids.first.to_i
+    match.second_player_id = player_ids.last.to_i
+  end
 end
