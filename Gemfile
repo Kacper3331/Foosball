@@ -35,6 +35,8 @@ gem 'simple_form'
 
 gem 'launchy'
 
+gem 'chosen-rails'
+
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 
 gem 'datetimepicker-rails',
