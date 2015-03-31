@@ -2,7 +2,7 @@
   %ul.nav.navbar-nav
     %li= link_to "Sign up", new_player_registration_path
 %body.body
-  %div.container
+  %div.sign_in
     %div.form
       %h2 Sign in
       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
