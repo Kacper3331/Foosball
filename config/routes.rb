@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'statistics/index'
+
   devise_for :players, controllers: { registrations: 'registrations' }
 
   resources :players
