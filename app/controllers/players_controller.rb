@@ -5,6 +5,7 @@ class PlayersController < ApplicationController
       @recent_match = recent_match(player)
       @matches_played = matches_played(player)
       @won_matches = win_matches(player)
+      @lost_matches = lose_matches(player)
   end
 
   private
@@ -37,6 +38,12 @@ class PlayersController < ApplicationController
     matches_first = Match.select(:first_player_score).where(first_player_id: player.id)
     matches_second = Match.select(:second_player_score).where(second_player_id: player.id)
     @winner = matches_first.where(first_player_score: 10).count + matches_second.where(second_player_score: 10).count
+  end
+
+  def lose_matches(player)
+    matches_first = Match.select(:first_player_score).where(first_player_id: player.id)
+    matches_second = Match.select(:second_player_score).where(second_player_id: player.id)
+    @loser = matches_first.where('first_player_score != ?', 10).count + matches_second.where('second_player_score != ?', 10).count
   end
   def set_player
     @player = Player.find(params[:id])
