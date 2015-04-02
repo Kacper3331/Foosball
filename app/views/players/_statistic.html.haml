@@ -1,0 +1,19 @@
+%body.body
+  %h2 Statistic
+  %table
+    %tbody
+      %td
+        %h4 Recent match
+        %h4 Date: #{@recent_match.date}
+        %h4 Oponent: #{@oponent.firstname} #{@oponent.lastname}
+        %h4 Score: #{@recent_match.score}
+        %br
+  %table
+    %tbody
+      %td
+        %h4 Wins: #{@won_matches}
+        %h4 Loses: #{@lost_matches}
+        %h4 Averange W/L: #{@averange_win_lost}
+        %h4 Matches played: #{@matches_played}
+        %h4 Sum points: #{@sum_points}
+        %h4 Averange points: #{@averange_points}
