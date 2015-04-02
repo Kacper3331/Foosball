@@ -6,6 +6,7 @@ class PlayersController < ApplicationController
       @matches_played = matches_played(player)
       @won_matches = win_matches(player)
       @lost_matches = lose_matches(player)
+      @averange_win_lost = averance_wins_lost(@won_matches, @lost_matches, @matches_played)
   end
 
   private
@@ -44,6 +45,11 @@ class PlayersController < ApplicationController
     matches_first = Match.select(:first_player_score).where(first_player_id: player.id)
     matches_second = Match.select(:second_player_score).where(second_player_id: player.id)
     @loser = matches_first.where('first_player_score != ?', 10).count + matches_second.where('second_player_score != ?', 10).count
+  end
+
+  def averance_wins_lost(won, lost, played)
+    @averange = (won.to_f + lost.to_f) / played.to_f
+    @averange.to_f
   end
   def set_player
     @player = Player.find(params[:id])
