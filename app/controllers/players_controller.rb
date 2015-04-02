@@ -2,6 +2,7 @@ class PlayersController < ApplicationController
   before_action :set_player, only: [:show]
 
   def show
+    player = set_player
     @check = check(player)
     if !@check.empty?
       @recent_match = recent_match(player)
