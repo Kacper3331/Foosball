@@ -12,9 +12,6 @@ class Match < ActiveRecord::Base
   validates :date,
     presence: true
 
-  validates :players,
-    presence: true
-
   def self.players_ids(player_ids, match)
     match.first_player_id = player_ids.first.to_i
     match.second_player_id = player_ids.last.to_i
