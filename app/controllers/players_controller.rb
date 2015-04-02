@@ -2,6 +2,8 @@ class PlayersController < ApplicationController
   before_action :set_player, only: [:show]
 
   def show
+    @check = check(player)
+    if !@check.empty?
       @recent_match = recent_match(player)
       @matches_played = matches_played(player)
       @won_matches = win_matches(player)
@@ -9,9 +11,15 @@ class PlayersController < ApplicationController
       @averange_win_lost = averance_wins_lost(@won_matches, @lost_matches, @matches_played)
       @averange_points = averange_points(player, @matches_played)
       @sum_points = sum_points(player, @matches_played)
+    end
   end
 
   private
+
+  def check(player)
+    Match.where('first_player_id = ? OR second_player_id = ?', player.id, player.id)
+  end
+
   def recent_match(player)
     recent_match_first = Match.select(:first_player_id, 'first_player_score as score' ,'second_player_id as oponent', :date).where(first_player_id: player.id)
     recent_match_second = Match.select(:second_player_id, 'second_player_score as score' ,'first_player_id as oponent', :date).where(second_player_id: player.id)
