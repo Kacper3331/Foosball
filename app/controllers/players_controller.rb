@@ -6,6 +6,7 @@ class PlayersController < ApplicationController
     @check = check(player)
     if !@check.empty?
       @recent_match = recent_match(player)
+      @oponent = Player.find_by_id(@recent_match.oponent)
       @matches_played = matches_played(player)
       @won_matches = win_matches(player)
       @lost_matches = lose_matches(player)
