@@ -7,6 +7,7 @@ class PlayersController < ApplicationController
       @won_matches = win_matches(player)
       @lost_matches = lose_matches(player)
       @averange_win_lost = averance_wins_lost(@won_matches, @lost_matches, @matches_played)
+      @averange_points = averange_points(player, @matches_played)
   end
 
   private
@@ -50,6 +51,11 @@ class PlayersController < ApplicationController
   def averance_wins_lost(won, lost, played)
     @averange = (won.to_f + lost.to_f) / played.to_f
     @averange.to_f
+  end
+
+  def averange_points(player, played)
+    sum = sum_points(player, played)
+    @average = (sum) / played.to_f
   end
   def set_player
     @player = Player.find(params[:id])
