@@ -5,18 +5,22 @@ class PlayersController < ApplicationController
     player = set_player
     @check = check(player)
     if !@check.empty?
-      @recent_match = recent_match(player)
-      @oponent = Player.find_by_id(@recent_match.oponent)
       @matches_played = matches_played(player)
       @won_matches = win_matches(player)
       @lost_matches = lose_matches(player)
       @averange_win_lost = averance_wins_lost(@won_matches, @lost_matches, @matches_played)
       @averange_points = averange_points(player, @matches_played)
       @sum_points = sum_points(player, @matches_played)
+      recent_match_information(player)
     end
   end
 
   private
+
+  def recent_match_information(player)
+    @recent_match = recent_match(player)
+    @oponent = Player.find_by_id(@recent_match.oponent)
+  end
 
   def check(player)
     Match.where('first_player_id = ? OR second_player_id = ?', player.id, player.id)
