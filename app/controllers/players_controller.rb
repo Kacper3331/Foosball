@@ -5,17 +5,21 @@ class PlayersController < ApplicationController
     player = set_player
     @check = check(player)
     if !@check.empty?
-      @matches_played = matches_played(player)
-      @won_matches = win_matches(player)
-      @lost_matches = lose_matches(player)
-      @averange_win_lost = averance_wins_lost(@won_matches, @lost_matches, @matches_played)
-      @averange_points = averange_points(player, @matches_played)
-      @sum_points = sum_points(player, @matches_played)
       recent_match_information(player)
+      statistic_information(player)
     end
   end
 
   private
+
+  def statistic_information(player)
+    @matches_played = matches_played(player)
+    @won_matches = win_matches(player)
+    @lost_matches = lose_matches(player)
+    @averange_win_lost = averance_wins_lost(@won_matches, @lost_matches, @matches_played)
+    @averange_points = averange_points(player, @matches_played).round(2)
+    @sum_points = sum_points(player, @matches_played)
+  end
 
   def recent_match_information(player)
     @recent_match = recent_match(player)
