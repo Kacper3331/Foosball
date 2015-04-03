@@ -57,7 +57,7 @@ class PlayersController < ApplicationController
   def lose_matches(player)
     matches_first = Match.select(:first_player_score).where(first_player_id: player.id)
     matches_second = Match.select(:second_player_score).where(second_player_id: player.id)
-    @loser = matches_first.where('first_player_score != ?', 10).count + matches_second.where('second_player_score != ?', 10).count
+    @loser = matches_first.lost_match_first_player + matches_second.lost_match_second_player
   end
 
   def averance_wins_lost(won, lost, played)
