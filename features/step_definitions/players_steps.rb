@@ -35,12 +35,24 @@ When(/^I press link: "(.*?)"$/) do |logout|
   click_link "#{logout}"
 end
 
-Given(/^I am on "(.*?)" page$/) do |sign_up|
+Given(/^I am on "(.*?)" page$/) do |page|
   visit "/"
-  click_on sign_up
+  click_on page
 end
 
 Given(/^I am new player/) do
   FactoryGirl.build(:player)
 end
 
+Given(/^I have two players/) do
+  FactoryGirl.create(:player)
+  FactoryGirl.create(:second_player)
+end
+
+When(/^I select "(.*?)" from "(.*?)"$/) do |name, field|
+  select name, from: field
+end
+
+# And(/^show me the page$/) do
+#   save_and_open_page
+# end
