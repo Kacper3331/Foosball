@@ -23,7 +23,6 @@ class PlayersController < ApplicationController
   end
 
   def recent_match(player)
-    recent_match_first = Match.select(:first_player_id, 'first_player_score as score' ,'second_player_id as oponent', :date).where(first_player_id: player.id)
     recent_match_first = Match.select_first_player.where(first_player_id: player.id)
     recent_match_second = Match.select_second_player.where(second_player_id: player.id)
 
@@ -62,7 +61,6 @@ class PlayersController < ApplicationController
 
   def averance_wins_lost(won, lost, played)
     @averange = (won.to_f + lost.to_f) / played.to_f
-    @averange.to_f
   end
 
   def averange_points(player, played)
@@ -77,6 +75,7 @@ class PlayersController < ApplicationController
     sum_score_second = matches_second.map(&:second_player_score).sum
     @sum = sum_score_first + sum_score_second
   end
+
   def set_player
     @player = Player.find(params[:id])
   end
