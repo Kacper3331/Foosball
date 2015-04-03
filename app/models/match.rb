@@ -20,4 +20,8 @@ class Match < ActiveRecord::Base
   scope :select_first_player, -> {
     select(:first_player_id, 'first_player_score as score' ,'second_player_id as oponent', :date)
   }
+
+  scope :select_second_player, -> {
+    select(:second_player_id, 'second_player_score as score' ,'first_player_id as oponent', :date)
+  }
 end

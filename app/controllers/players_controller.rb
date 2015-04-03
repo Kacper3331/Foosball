@@ -24,8 +24,8 @@ class PlayersController < ApplicationController
 
   def recent_match(player)
     recent_match_first = Match.select(:first_player_id, 'first_player_score as score' ,'second_player_id as oponent', :date).where(first_player_id: player.id)
-    recent_match_second = Match.select(:second_player_id, 'second_player_score as score' ,'first_player_id as oponent', :date).where(second_player_id: player.id)
     recent_match_first = Match.select_first_player.where(first_player_id: player.id)
+    recent_match_second = Match.select_second_player.where(second_player_id: player.id)
 
     if recent_match_first.empty?
       return @match = recent_match_second.last
